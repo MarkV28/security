@@ -1,5 +1,7 @@
 # -*- coding: UTF-8 -*-
 
+from collections import Counter
+
 f = open('wordlist.txt', 'r')
 words = f.read().split('\n')
 lines = []
@@ -11,14 +13,11 @@ while True:
 		break
 	elif line:
 		for i in range(0, len(words)):
-			counter = 0
-			for char in line:
-				if char in words[i]:
-					counter += 1
-			if counter == len(words[i]) and len(line) == len(words[i]):
-				lines.append(words[i])
-				# counter = 0
-				break
+			if len(words[i]) == len(line):
+				if not list(set(list(words[i])) - set(list(line))):
+					if len(Counter(words[i])) == len(Counter(line)):
+						lines.append(words[i])
+						break
 
 text = ','.join(lines)
 
