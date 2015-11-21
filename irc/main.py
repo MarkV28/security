@@ -3,7 +3,7 @@
 import socket
 import hashlib
 
-server = "irc.hackthissite.org"
+server = "irc-hub.hackthissite.org"
 channel = "#perm8"
 botnick = "KwawK"
 
@@ -26,8 +26,8 @@ try:
 			ircsock.send('JOIN ' + channel + '\r\n')
 			ircsock.send('NOTICE moo !perm8\r\n')
 		if data.find('!md5') != -1:
-			print str(data[40:56])
-			answer = hashlib.md5(str(data[40:56])).hexdigest()
+			print str(data[332:348])
+			answer = hashlib.md5(str(data[332:348])).hexdigest()
 			print answer
 			ircsock.send('NOTICE moo !perm8-result ' + answer + '\r\n')
 		if data.find('VERSION') != -1:
